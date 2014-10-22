@@ -1,0 +1,51 @@
+<?
+
+$mysqli = mysqli_connect('localhost','fromweb','bollox','mystats');
+
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: ".mysqli_connect_error();
+}
+
+// $sql = mysqli_query($mysqli, 'SELECT * FROM `actual` WHERE 1 ORDER by `id`');
+ $sql = mysqli_query($mysqli, 'SELECT * FROM `actual` WHERE `id` > 397 ORDER by `id`');
+
+if (!$sql) {
+    die("Error running $sql: " . mysql_error());
+}
+
+$table   = array();
+
+$cols = array();
+$cols[] = array('id'=>'','label'=>'id',              'pattern'=>'','type'=>'number');
+//$cols[] = array('id'=>'','label'=>'when',            'pattern'=>'','type'=>'string'),
+$cols[] = array('id'=>'','label'=>'systolic',        'pattern'=>'','type'=>'number');
+$cols[] = array('id'=>'','label'=>'diastolic',       'pattern'=>'','type'=>'number');
+$cols[] = array('id'=>'','label'=>'pulse',           'pattern'=>'','type'=>'number');
+
+$results = array();
+
+
+while($row = mysqli_fetch_assoc($sql))
+{
+    $bollox = array();
+
+//    $DateTime =  explode(' ', $row['when']);
+//    $Date = $DateTime[0];
+
+
+    $bollox[] = array('v' => $row['id'], 'f' => null);
+//    $bollox[] = array('v' => $row['when'], 'f' => null);
+    $bollox[] = array('v' => $row['systolic'], 'f' => null);
+    $bollox[] = array('v' => $row['diastolic'],'f' => null);
+    $bollox[] = array('v' => $row['pulse'],    'f' => null);
+
+    $results[] = array( 'c' => $bollox);
+
+};
+
+$table = array("cols" =>  $cols, "rows" => $results);
+
+$json = json_encode($table, JSON_PRETTY_PRINT);
+echo $json;
+
+?>
