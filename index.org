@@ -1,4 +1,4 @@
-# Modified: [index.org] <2014-10-17 19:58:58> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/index.org]
+# Modified: [index.org] <2014-10-22 19:13:31> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/index.org]
 * DONE get the Google example working for creating a chart in a web page  from a mysql db [5/5]
 CLOSED: [2014-10-05 Sun 15:09]
 - State "DONE"       from "STARTED"    [2014-10-05 Sun 15:09]
@@ -76,3 +76,4 @@ parameters:
 
 * BACKLOG Investigate the input of starting values with google chart dashboard sliders etc.
 - State "BACKLOG"    from ""           [2014-10-17 Fri 19:58]
+  
