@@ -1,0 +1,101 @@
+<!-- Modified: [BP.html] <2014-10-17 09:39:52> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/BP.html]
+-->
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Cache-control" content="public">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {'packages':['corechart']});
+      
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawChart);
+      
+    function drawChart() {
+	var jsonData = $.ajax({
+            url: "stats/getBPData.php",
+            dataType:"json",
+            async: false
+        }).responseText;
+          
+	// Create our data table out of JSON data loaded from server.
+	var data = new google.visualization.DataTable(jsonData);
+
+	var options = {
+	    title: 'BP vs. time',
+	    hAxis: {
+//		format: 'yyyy-MM-dd',
+		title: 'Days',
+	    },
+
+	    vAxis: {title: 'Systolic, Diastolic, Pulse'},
+	    
+	    series: {
+		0: { color: 'blue' },
+		1: { color: 'red' }, 
+		2: { color: 'green' },
+            },
+
+	    width: 1200, 
+	    height: 480,
+    
+	    // Allow multiple simultaneous selections.
+	    selectionMode: 'multiple',
+
+	    // Trigger tooltips on selections.
+	    tooltip: { trigger: 'selection' },
+
+	    // Group selections by x-value.
+	    aggregationTarget: 'category',
+
+	    // Draw a trendlines for data series 0,1,2.
+            trendlines: { 0: 
+			  {
+			      color: 'darkblue',
+			      lineWidth: 2,
+                              labelInLegend: 'systolic trend',
+			      visibleInLegend: true, 
+			      opacity: 0.9,
+			  },
+			  1: 
+			  {
+			      color: 'darkred',
+			      lineWidth: 2,
+			      opacity: 0.9,
+			      labelInLegend: 'diastolic trend',
+			      visibleInLegend: true, 
+			  },
+			  2: 
+			  {
+			      color: 'darkgreen',
+			      lineWidth: 2,
+			      opacity: 0.9,
+			      labelInLegend: 'pulse trend',
+			      visibleInLegend: true, 
+			  }
+
+			},  
+	};
+
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+	chart.draw(data, options);
+    }
+
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <iframe src="links.html" frameBorder="0" height="20%"></iframe>
+    </div>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
+</html>

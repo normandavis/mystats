@@ -1,0 +1,59 @@
+<!-- Modified: [table.html] <2014-10-17 09:29:23> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/table.html]
+-->
+<html>
+  <head>
+    <meta http-equiv="Cache-control" content="public">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      // Load the Visualization API and the table package.
+      google.load('visualization', '1', {'packages':['table']});
+      
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawTable);
+      
+    function drawTable() {
+        var jsonData = $.ajax({
+            url: "stats/getAllData.php",
+            dataType:"json",
+            async: false
+        }).responseText;
+        
+        // Create our data table out of JSON data loaded from server.
+        var data = new google.visualization.DataTable(jsonData);
+        
+        var options = {
+	    showRowNumber: true,
+	    title: 'My Stats',
+	    width: 600
+        };
+        
+        // Instantiate and draw our table, passing in some options.
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+        table.draw(data, options);
+
+	// from https://groups.google.com/forum/#!topic/google-visualization-api/1dABD84NwkE
+	// makes changes to DOM but don't see the effect on screen?
+	// set the width of the column with the title "Name" to 100px
+//	var title = "when";
+//	var width = "20px";
+//	$('.google-visualization-table-th:contains(' + title + ')').css('width', width);
+
+	var width = "600px";
+	var height = "600px";
+	table.google-visualization-table-table.css('width', width);
+
+
+    }
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <iframe src="links.html" frameBorder="0" height="20%"></iframe>
+    </div>
+    <!--Div that will hold the table-->
+    <div id="table_div"></div>
+  </body>
+</html>

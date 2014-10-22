@@ -1,0 +1,116 @@
+<!-- Modified: [weight.html] <2014-10-17 09:30:09> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/weight.html]
+-->
+<html>
+  <head>
+    <meta http-equiv="Cache-control" content="public">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+  
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {'packages':['corechart']});
+      
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawChart);
+      
+    function drawChart() {
+	var jsonData = $.ajax({
+            url: "stats/getWeightData.php",
+            dataType:"json",
+            async: false
+	}).responseText;
+    
+	// Create our data table out of JSON data loaded from server.
+	var data = new google.visualization.DataTable(jsonData);
+
+	var options = {
+	    title: 'weight in pounds vs. time',
+	    hAxis: {
+
+		title: 'Days'
+		   },
+
+	    vAxis: {title: 'Weight in pounds'},
+
+	    series: {
+		0: { color: 'blue' },
+            },
+
+	    // Draw a trendline for data series 0.
+            trendlines: { 0: 
+			  {
+			      color: 'red',
+			      lineWidth: 2,
+			      opacity: 0.9,
+			      labelInLegend: 'weight trend',
+			      visibleInLegend: true, 
+			  }
+			},
+
+	    width: 1200, 
+	    height: 480,
+    
+	    // Allow multiple simultaneous selections.
+	    selectionMode: 'multiple',
+
+	    // Trigger tooltips on selections.
+	    tooltip: { trigger: 'selection' },
+
+	    // Group selections by x-value.
+	    aggregationTarget: 'category',
+
+	    
+	};
+
+	// Instantiate and draw our chart, passing in some options.
+	var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+	chart.draw(data, options);
+    }
+
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <iframe src="links.html" frameBorder="0" height="20%"></iframe>
+    </div>
+
+    <!--Div that will hold the chart-->
+    <div id="chart_div"></div>
+
+    <h2>references</h2>
+    <div><a href='https://google-developers.appspot.com/chart/interactive/docs/gallery/linechart'>Google Charts - linecharts</href></div>
+    <div>https://google-developers.appspot.com/chart/interactive/docs/basic_draw_chart</div>
+    <div>https://developers.google.com/chart/interactive/docs/queries</div>
+    <div>http://stackoverflow.com/questions/19571162/google-charts-and-mysql</div>
+    <div>https://developers.google.com/chart/interactive/docs/gallery/trendlines</div>
+    <div>http://stackoverflow.com/questions/12994282/php-mysql-google-chart-json-complete-example</div>
+    <div>http://se.php.net/manual/en/function.json-encode.php</div>
+
+  </body>
+</html>
+
+
+
+
+
+<!-- google.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Diameter', 'Age'],
+    [8, 37], [4, 19.5], [11, 52], [4, 22], [3, 16.5], [6.5, 32.8], [14, 72]]);
+  var options = {
+    title: 'Age of sugar maples vs. trunk diameter, in inches',
+    hAxis: {title: 'Diameter'},
+    vAxis: {title: 'Age'},
+    legend: 'none',
+    trendlines: { 0: {} }    // Draw a trendline for data series 0.
+  };
+
+  var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+  chart.draw(data, options);
+}
+-->

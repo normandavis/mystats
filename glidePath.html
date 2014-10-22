@@ -1,0 +1,86 @@
+<!-- Modified: [glidePath.html] <2014-10-17 19:57:28> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/glidePath.html]
+-->
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Cache-control" content="public">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+  
+      // Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {packages : ['controls','corechart','geochart','table']});
+      
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(createTable);
+
+
+    function createTable() {
+	// get data for table as json date loaded from server 
+	var jsonData = $.ajax({
+            url: "stats/getGlidePath.php",
+            dataType:"json",
+            async: false
+	}).responseText;
+
+	// Create our data table out of JSON data loaded from server.
+	var myData = new google.visualization.DataTable(jsonData);
+    
+	// Create a dashboard.
+	var dash_container = document.getElementById('dashboard_div'),
+	myDashboard = new google.visualization.Dashboard(dash_container);
+
+	// Create a date range slider on the 'when' column
+	var myDateSlider = new google.visualization.ControlWrapper({
+	    'controlType': 'ChartRangeFilter',
+	    'containerId': 'control_div',
+	    'options': {
+		'filterColumnLabel': 'id'
+	    }
+	});
+
+	// Table visualization
+	var myTable = new google.visualization.ChartWrapper({
+	    'chartType' : 'Table',
+	    'containerId' : 'table_div'
+	});
+
+	// Bind myTable to the dashboard, and to the controls
+	// this will make sure our table is update when our date changes
+	myDashboard.bind(myDateSlider, myTable);
+
+	// Line chart visualization
+	var myLine = new google.visualization.ChartWrapper({
+	    'chartType' : 'LineChart',
+	    'containerId' : 'line_div',
+            'title' : 'BP vs. time',
+	});
+
+	// Bind myLine to the dashboard, and to the controls
+	// this will make sure our line chart is update when our date changes
+	myDashboard.bind(myDateSlider, myLine );
+
+	myDashboard.draw(myData);
+    }
+</script>
+
+
+  </head>
+
+  <body>
+    <div>
+      <iframe src="links.html" frameBorder="0" height="20%"></iframe>
+    </div>
+
+    <div id="dashboard_div">
+    <div id="control_div"><!-- Controls renders here --></div>
+    <div id="line_div"><!-- Line chart renders here --></div>
+    <div id="table_div"><!-- Table renders here --></div>
+    </div>
+
+
+  </body>
+</html>
+
+

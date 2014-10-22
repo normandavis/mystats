@@ -1,0 +1,78 @@
+# Modified: [index.org] <2014-10-17 19:58:58> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/index.org]
+* DONE get the Google example working for creating a chart in a web page  from a mysql db [5/5]
+CLOSED: [2014-10-05 Sun 15:09]
+- State "DONE"       from "STARTED"    [2014-10-05 Sun 15:09]
+- State "STARTED"    from "TODO"       [2014-10-04 Sat 18:39]
+** DONE check out example [[https://developers.google.com/chart/interactive/docs/php_example][here]]
+CLOSED: [2014-10-04 Sat 18:35]
+- State "DONE"       from ""           [2014-10-04 Sat 18:35]
+** DONE get example working with line chart
+CLOSED: [2014-10-04 Sat 18:55]
+- State "DONE"       from "TODO"       [2014-10-04 Sat 18:55]
+- State "TODO"       from "BACKLOG"    [2014-10-04 Sat 18:35]
+- State "BACKLOG"    from ""           [2014-10-04 Sat 18:35]
+
+** DONE get example working with my data schema
+CLOSED: [2014-10-04 Sat 18:55]
+- State "DONE"       from "TODO"       [2014-10-04 Sat 18:55]
+** DONE get old example working with new mysqli code
+CLOSED: [2014-10-05 Sun 15:04]
+- State "DONE"       from "TODO"       [2014-10-05 Sun 15:04]
+** DONE get example connecting to database
+CLOSED: [2014-10-05 Sun 15:05]
+- State "DONE"       from "TODO"       [2014-10-05 Sun 15:05]
+* DONE improve the example in /stats [3/3]
+CLOSED: [2014-10-06 Mon 15:13]
+- State "DONE"       from "TODO"       [2014-10-06 Mon 15:13]
+** DONE fix index.html as it is no longer producing the chart
+CLOSED: [2014-10-06 Mon 15:12]
+- State "DONE"       from "BACKLOG"    [2014-10-06 Mon 15:12]
+- State "BACKLOG"    from ""           [2014-10-05 Sun 15:06]
+** DONE find out how to optimise the library downloads
+CLOSED: [2014-10-06 Mon 15:12]
+- State "DONE"       from "BACKLOG"    [2014-10-06 Mon 15:12]
+- State "BACKLOG"    from ""           [2014-10-05 Sun 15:07]
+** DONE test with small fixed dataset (dateXweight)
+CLOSED: [2014-10-06 Mon 15:13]
+- State "DONE"       from "BACKLOG"    [2014-10-06 Mon 15:13]
+- State "BACKLOG"    from ""           [2014-10-05 Sun 15:09]
+- use getData.php to populeate a json file
+* STARTED get datetime date working in charts
+- State "STARTED"    from "WAITING"    [2014-10-16 Thu 12:39]
+- State "TODO"       from ""           [2014-10-07 Tue 08:47]
+* STARTED replace zeros in columns with average value of existing (non-zero) data
+- State "STARTED"    from "WAITING"    [2014-10-16 Thu 12:39]
+* BACKLOG Investigate the use of fusion tables instead of mysql
+- State "BACKLOG"    from ""           [2014-10-16 Thu 12:40]
+* BACKLOG back up this development activity to Dropbox
+- State "BACKLOG"    from ""           [2014-10-16 Thu 12:41]
+* DONE create Glide Path analysis of weight loss
+CLOSED: [2014-10-17 Fri 19:55]
+- State "DONE"       from "STARTED"    [2014-10-17 Fri 19:55]
+- State "STARTED"    from "WAITING"    [2014-10-17 Fri 19:55]
+- State "TODO"       from "BACKLOG"    [2014-10-17 Fri 19:55]
+- State "BACKLOG"    from ""           [2014-10-17 Fri 13:04]
+parameters:  
+- Starting Weight  - *B2* the starting weight supplied
+- Goal Weight      - *B3* the goal weight supplied
+- The rate of loss - supplied
+ or 
+- the target goal date - supplied
+- loss rate        - *B4* determined by one of the two above
+- c/f ratio        - *B5* not sure (0.6?)
+- buffer           - *B6* not sure (0.0075?)
+- 
+|    | A        |      B | C                       | D                                        | E                |
+|    | day      | weight | floor                   | ceiling                                  | middle           |
+|----+----------+--------+-------------------------+------------------------------------------+------------------|
+|  9 | 15/06/13 | 256.60 | B2-(B2*B6*0.5)          | B2+(B2*B6*0.5)                           | AVERAGE(C9:D9)   |
+| 10 | 16/06/13 | 255.20 | C9-(((C9-$B$3)*$B$4))   | D9-(((D9-($B$3+$B$3*$B$6))*$B$4*$B$5))   | AVERAGE(C10:D10) |
+| 11 | 17/06/13 | 255.00 | C10-(((C10-$B$3)*$B$4)) | D10-(((D10-($B$3+$B$3*$B$6))*$B$4*$B$5)) | AVERAGE(C11:D11) |
+| 12 | 18/06/13 | 255.50 |                         |                                          |                  |
+| 13 | 19/06/13 | 254.20 |                         |                                          |                  |
+| 14 | 20/06/13 | 253.60 |                         |                                          |                  |
+| 15 | 21/06/13 | 253.60 |                         |                                          |                  |
+
+
+* BACKLOG Investigate the input of starting values with google chart dashboard sliders etc.
+- State "BACKLOG"    from ""           [2014-10-17 Fri 19:58]
