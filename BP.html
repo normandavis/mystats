@@ -1,4 +1,4 @@
-<!-- Modified: [BP.html] <2014-10-17 09:39:52> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/BP.html]
+<!-- Modified: [BP.html] <2014-10-25 17:19:19> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/BP.html]
 -->
 
 <html lang="en">
@@ -33,7 +33,14 @@
 		title: 'Days',
 	    },
 
-	    vAxis: {title: 'Systolic, Diastolic, Pulse'},
+	    vAxis: {
+		title: 'Pulse, Diastolic, Systolic',
+		gridlines: {
+		    count: 10,
+		},
+		maxValue: 180,
+		minValue: 50,
+	    },
 	    
 	    series: {
 		0: { color: 'blue' },
@@ -42,7 +49,8 @@
             },
 
 	    width: 1200, 
-	    height: 480,
+	    height: 600,
+
     
 	    // Allow multiple simultaneous selections.
 	    selectionMode: 'multiple',
@@ -81,7 +89,6 @@
 
 			},  
 	};
-
 
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.LineChart(document.getElementById('chart_div'));

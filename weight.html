@@ -1,4 +1,4 @@
-<!-- Modified: [weight.html] <2014-10-22 20:06:21> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/weight.html]
+<!-- Modified: [weight.html] <2014-10-25 17:23:25> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/weight.html]
 -->
 <html>
   <head>
@@ -28,8 +28,8 @@
 	var options = {
 	    title: 'weight in pounds vs. time',
 	    hAxis: {
-
-		title: 'Days'
+		format: 'YYYYMMDD',
+		title: 'Days',
 		   },
 
 	    vAxis: {title: 'Weight in pounds'},
@@ -50,7 +50,7 @@
 			},
 
 	    width: 1200, 
-	    height: 480,
+	    height: 600,
     
 	    // Allow multiple simultaneous selections.
 	    selectionMode: 'multiple',

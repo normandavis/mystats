@@ -17,7 +17,7 @@
     function createTable() {
 	// get data for table as json date loaded from server 
 	var jsonData = $.ajax({
-            url: "stats/getBPData.php",
+            url: "stats/getDashboardData.php",
             dataType:"json",
             async: false
 	}).responseText;

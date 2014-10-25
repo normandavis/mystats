@@ -1,4 +1,4 @@
-# Modified: [index.org] <2014-10-22 19:13:31> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/index.org]
+# Modified: [index.org] <2014-10-23 12:48:22> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/index.org]
 * DONE get the Google example working for creating a chart in a web page  from a mysql db [5/5]
 CLOSED: [2014-10-05 Sun 15:09]
 - State "DONE"       from "STARTED"    [2014-10-05 Sun 15:09]
@@ -37,14 +37,16 @@ CLOSED: [2014-10-06 Mon 15:13]
 - State "DONE"       from "BACKLOG"    [2014-10-06 Mon 15:13]
 - State "BACKLOG"    from ""           [2014-10-05 Sun 15:09]
 - use getData.php to populeate a json file
+* STARTED replace zeros in columns with average value of existing (non-zero) data
+- State "STARTED"    from "WAITING"    [2014-10-16 Thu 12:39]
 * STARTED get datetime date working in charts
 - State "STARTED"    from "WAITING"    [2014-10-16 Thu 12:39]
 - State "TODO"       from ""           [2014-10-07 Tue 08:47]
-* STARTED replace zeros in columns with average value of existing (non-zero) data
-- State "STARTED"    from "WAITING"    [2014-10-16 Thu 12:39]
 * BACKLOG Investigate the use of fusion tables instead of mysql
 - State "BACKLOG"    from ""           [2014-10-16 Thu 12:40]
-* BACKLOG back up this development activity to Dropbox
+* DONE back up this development activity to GitHub
+CLOSED: [2014-10-23 Thu 11:59]
+- State "DONE"       from "BACKLOG"    [2014-10-23 Thu 11:59]
 - State "BACKLOG"    from ""           [2014-10-16 Thu 12:41]
 * DONE create Glide Path analysis of weight loss
 CLOSED: [2014-10-17 Fri 19:55]
@@ -73,7 +75,20 @@ parameters:
 | 14 | 20/06/13 | 253.60 |                         |                                          |                  |
 | 15 | 21/06/13 | 253.60 |                         |                                          |                  |
 
-
 * BACKLOG Investigate the input of starting values with google chart dashboard sliders etc.
 - State "BACKLOG"    from ""           [2014-10-17 Fri 19:58]
   
+
+
+* User Story Title: Input Start Paramaters
+  :PROPERTIES:
+  :ADDED: <2014-10-23 Thu 12:40>
+  :END: 
+** Described by:
+*** As someone who tracks personal data daily
+*** I want to input the parameters that set up the start data and the goals
+*** So that information can be recovered from data to inform and influence change
+** Acceptance Criteria: startup parameters persist
+*** Given startup parameters were input previously
+*** When new data is added
+*** Then it is captured, and displayed in the context of the start and goal parameters

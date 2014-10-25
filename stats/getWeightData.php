@@ -1,6 +1,5 @@
 <?
-
-// Modified: [getWeightData.php] <2014-10-16 12:20:37> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/stats/getWeightData.php]
+// Modified: [getWeightData.php] <2014-10-25 17:23:55> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/stats/getWeightData.php]
 
 $mysqli = mysqli_connect('localhost','fromweb','bollox','mystats');
 
@@ -15,32 +14,40 @@ if (!$sql) {
     die("Error running $sql: " . mysql_error());
 }
 
-//$cols[] = array('id'=>'','label'=>'weight_in_pounds','pattern'=>'','type'=>'number');
-
 $results = array(
     'cols' => array (
-        array('label' => 'id',               'type' => 'number'),
-//        array('label' => 'when',             'type' => 'string'),
-        array('label' => 'weight_in_pounds', 'type' => 'number')
-
-
-
+        array('label' => 'when',             'type' => 'string'),
+        array('label' => 'weight_in_pounds', 'type' => 'number'),
     ),
     'rows' => array()
-);
+);//$results
 
+// now add the rows
 while($row = mysqli_fetch_assoc($sql))
 {
 
-    $DateTime =  explode(' ', $row['when']);
-    $Date = $DateTime[0];
+   // datetime assumes CCYY-MM-DD HH:MM:SS)
+   $DateTime =  explode(' ', $row['when']);
+   $Date = $DateTime[0];
+   $Time = $DateTime[1];
 
+   // date assumes "CCYY-MM-DD" format
+   $dateArr = explode('-', $Date);
+   $year  = (int) $dateArr[0];
+   $month = (int) $dateArr[1] - 1; // subtract 1 to make month compatible with javascript months
+   $day   = (int) $dateArr[2];
 
-    $results['rows'][] = array('c' => array(
-        //      array('v' => $Date,             'f' => null),
-        array('v' => $row['id'], 'f' => null),
-        array('v' => $row['weight_in_pounds'], 'f' => null)
-    ));
+   // time assumes "hh:mm:ss" format
+   $timeArr = explode(':', $Time);
+   $hour   = (int) $timeArr[0];
+   $minute = (int) $timeArr[1];
+   $second = (int) $timeArr[2];
+
+   $results['rows'][] = array('c' => array(
+
+       array('v' => "Date($year, $month, $day, $hour, $minute, $second)", 'f' => null),
+       array('v' => $row['weight_in_pounds'], 'f' => null)
+   ));
 };
 
 $json = json_encode($results, JSON_PRETTY_PRINT);
