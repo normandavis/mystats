@@ -1,5 +1,5 @@
 <?
-// Modified: [getBPData.php] <2014-10-25 15:53:32> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/stats/getBPData.php]
+// Modified: [getBPData.php] <2014-10-28 07:20:24> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/stats/getBPData.php]
 
 $mysqli = mysqli_connect('localhost','fromweb','bollox','mystats');
 
@@ -18,7 +18,8 @@ if (!$sql) {
 // first create the columns
 $results = array (
     'cols' => array (
-        array('label' => 'when',      'type' => 'string'),
+//        array('label' => 'when',      'type' => 'string'),
+        array('label' => 'id',  'type' => 'number'),
         array('label' => 'systolic',  'type' => 'number'),
         array('label' => 'diastolic', 'type' => 'number'),
         array('label' => 'pulse',     'type' => 'number'),
@@ -51,7 +52,8 @@ while($row = mysqli_fetch_assoc($sql)) {
 
 //the Google Charts API does now support a custom valid JSON representation of dates as a string in the following format: Date(year, month, day[,hour, minute, second[, millisecond]]) where everything after day is optional, and months are zero-based.
 
-        array('v' => "Date($year, $month, $day, $hour, $minute, $second)", 'f' => null),
+//        array('v' => "Date($year, $month, $day, $hour, $minute, $second)", 'f' => null),
+        array('v' => $row['id'], 'f' => null),
         array('v' => $row['systolic'], 'f' => null),
         array('v' => $row['diastolic'],'f' => null),
         array('v' => $row['pulse'],    'f' => null),

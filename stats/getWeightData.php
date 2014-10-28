@@ -1,5 +1,5 @@
 <?
-// Modified: [getWeightData.php] <2014-10-25 17:23:55> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/stats/getWeightData.php]
+// Modified: [getWeightData.php] <2014-10-28 07:17:47> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/stats/getWeightData.php]
 
 $mysqli = mysqli_connect('localhost','fromweb','bollox','mystats');
 
@@ -16,7 +16,8 @@ if (!$sql) {
 
 $results = array(
     'cols' => array (
-        array('label' => 'when',             'type' => 'string'),
+//        array('label' => 'when',             'type' => 'string'),
+        array('label' => 'when',             'type' => 'number'),
         array('label' => 'weight_in_pounds', 'type' => 'number'),
     ),
     'rows' => array()
@@ -45,7 +46,8 @@ while($row = mysqli_fetch_assoc($sql))
 
    $results['rows'][] = array('c' => array(
 
-       array('v' => "Date($year, $month, $day, $hour, $minute, $second)", 'f' => null),
+//       array('v' => "Date($year, $month, $day, $hour, $minute, $second)", 'f' => null),
+       array('v' => $row['id'], 'f' => null),
        array('v' => $row['weight_in_pounds'], 'f' => null)
    ));
 };

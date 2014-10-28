@@ -1,4 +1,11 @@
-# Modified: [index.org] <2014-10-23 12:48:22> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/index.org]
+# Modified: [index.org] <2014-10-25 17:35:37> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/index.org]
+* BACKLOG Investigate the use of fusion tables instead of mysql
+- State "BACKLOG"    from ""           [2014-10-16 Thu 12:40]
+* STARTED replace zeros in columns with average value of existing (non-zero) data
+- State "STARTED"    from "WAITING"    [2014-10-16 Thu 12:39]
+
+* BACKLOG Investigate the input of starting values with google chart dashboard sliders etc.
+- State "BACKLOG"    from ""           [2014-10-17 Fri 19:58]
 * DONE get the Google example working for creating a chart in a web page  from a mysql db [5/5]
 CLOSED: [2014-10-05 Sun 15:09]
 - State "DONE"       from "STARTED"    [2014-10-05 Sun 15:09]
@@ -37,13 +44,11 @@ CLOSED: [2014-10-06 Mon 15:13]
 - State "DONE"       from "BACKLOG"    [2014-10-06 Mon 15:13]
 - State "BACKLOG"    from ""           [2014-10-05 Sun 15:09]
 - use getData.php to populeate a json file
-* STARTED replace zeros in columns with average value of existing (non-zero) data
-- State "STARTED"    from "WAITING"    [2014-10-16 Thu 12:39]
-* STARTED get datetime date working in charts
+* DONE get datetime date working in charts
+CLOSED: [2014-10-25 Sat 17:35]
+- State "DONE"       from "STARTED"    [2014-10-25 Sat 17:35]
 - State "STARTED"    from "WAITING"    [2014-10-16 Thu 12:39]
 - State "TODO"       from ""           [2014-10-07 Tue 08:47]
-* BACKLOG Investigate the use of fusion tables instead of mysql
-- State "BACKLOG"    from ""           [2014-10-16 Thu 12:40]
 * DONE back up this development activity to GitHub
 CLOSED: [2014-10-23 Thu 11:59]
 - State "DONE"       from "BACKLOG"    [2014-10-23 Thu 11:59]
@@ -74,9 +79,6 @@ parameters:
 | 13 | 19/06/13 | 254.20 |                         |                                          |                  |
 | 14 | 20/06/13 | 253.60 |                         |                                          |                  |
 | 15 | 21/06/13 | 253.60 |                         |                                          |                  |
-
-* BACKLOG Investigate the input of starting values with google chart dashboard sliders etc.
-- State "BACKLOG"    from ""           [2014-10-17 Fri 19:58]
   
 
 
