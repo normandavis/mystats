@@ -61,7 +61,7 @@ if( $_POST )
   $systolic         = $_POST['systolic'];
   $diastolic        = $_POST['diastolic'];
   $pulse            = $_POST['pulse'];
-
+  $comment          = $_POST['comment'];
   // We now have all of the data that the user inputed. What you don't want
   // to do is trust the user's input. Savy users / hackers may attempt to use
   // an sql injection attack in order to run sql statements that you did not
@@ -93,7 +93,8 @@ if( $_POST )
   $systolic         = mysql_real_escape_string($systolic);
   $diastolic        = mysql_real_escape_string($diastolic);
   $pulse            = mysql_real_escape_string($pulse);
-  
+  $comment          = mysql_real_escape_string($comment);
+
   // We also need to get the article id, so we know if the comment belongs
   // to page 1 or if it belongs to page 2. The article id is going to be
   // passed in the URL. For example, looking at this URL:
@@ -120,8 +121,8 @@ if( $_POST )
   // to update our SQL query. For example, instead of "John Smith", we'll
   // use $users_name. Below is our updated SQL command:
   $query = "
-    INSERT INTO `mystats`.`actual` (`when`,             `weight_in_pounds`, `systolic`, `diastolic`, `pulse`) 
-                            VALUES (CURRENT_TIMESTAMP, '$weight_in_pounds','$systolic','$diastolic','$pulse');
+    INSERT INTO `mystats`.`actual` (`when`,             `weight_in_pounds`, `systolic`, `diastolic`, `pulse`, `comment`) 
+                            VALUES (CURRENT_TIMESTAMP, '$weight_in_pounds','$systolic','$diastolic','$pulse', '$comment');
            ";
 
   // Our SQL stated is stored in a variable called $query. To run the SQL command

@@ -1,4 +1,4 @@
-/* Modified: [createDB.sql] <2014-10-07 12:30:08> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/sql/createDB.sql]
+/* Modified: [createDB.sql] <2014-10-29 07:47:29> [norman@albany:/ftp:pi@192.168.0.31:/home/pi/www/mystats/sql/createDB.sql]
 */
 
 --
@@ -21,6 +21,7 @@ CREATE TABLE  `mystats`.`actual` (
   `systolic`         int(11)              NOT NULL,
   `diastolic`        int(11)              NOT NULL,
   `pulse`            int(11)              NOT NULL,
+  `comment`          text,                 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -53,8 +54,8 @@ mysql> VALUES (2, NOW(), '253.8', '142', '87', '68');
 
 
 INSERT INTO `mystats`.`actual` 
-(`id`, `when`, `weight_in_pounds`, `systolic`, `dyastolic`, `pulse`) 
-VALUES ('NULL','Saturday, 15 June, 2013','256.60','129','89','58'),
+(`id`, `when`, `weight_in_pounds`, `systolic`, `dyastolic`, `pulse`, `comment`) 
+VALUES ('NULL','Saturday, 15 June, 2013','256.60','129','89','58', 'NULL'),
 
 
 */

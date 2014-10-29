@@ -20,6 +20,7 @@ $results = array(
         array('label' => 'systolic',         'type' => 'number'),
         array('label' => 'diastolic',        'type' => 'number'),
         array('label' => 'pulse',            'type' => 'number'),
+        array('label' => 'comment',          'type' => 'string'),
     ),
     'rows' => array()
 );
@@ -33,6 +34,7 @@ while($row = mysqli_fetch_assoc($sql))
         array('v' => $row['systolic'],         'f' => null),
         array('v' => $row['diastolic'],        'f' => null),
         array('v' => $row['pulse'],            'f' => null),
+        array('v' => $row['comment'],          'f' => null),
     ));
 };
 
